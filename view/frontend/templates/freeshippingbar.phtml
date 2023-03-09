@@ -1,5 +1,16 @@
-<?php if ($block->isEnabled()): ?>
-    <div class="free_shipping_bar_area" style="background-color: <?= $block->getBackgroundColor(); ?>; color:  <?= $block->getTextColor(); ?>" >
-        <?php echo __($block->getFreeShippingMessage()); ?>
-    </div>
+<?php
+
+/**
+ * @var $block \Arun\FreeShippingBar\Block\FreeShippingBar
+ * This phtml is responsible for the showing the bar in all pages
+ * the id "block-container" will gets updated when Add to cart / Mini cart updates
+ */
+
+$isEnabled = $block->isEnabled();
+
+?>
+<?php if ($isEnabled) : ?>
+        <div id="block-container">
+                <?php echo __($block->getFreeShippingMessage()); ?>
+        </div>
 <?php endif; ?>

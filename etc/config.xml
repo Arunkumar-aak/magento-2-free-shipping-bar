@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+   <default>
+       <free_shipping_bar>
+           <free_shipping_bar>
+               <enabled>1</enabled>
+               <minimum_order_amount>50</minimum_order_amount>
+               <cart_is_empty_message>Purchase for {minimum_order_amount} to avail free shipping!!!</cart_is_empty_message>
+               <cart_value_less_than_minimum_message>Purchase more {remaining_amount} to get free shipping</cart_value_less_than_minimum_message>
+               <success_message>Congrats!! Free shipping Available!!</success_message>
+               <background_color>#0000FF</background_color>
+               <text_color>#ffffff</text_color>
+           </free_shipping_bar>
+       </free_shipping_bar>
+   </default>
+</config>

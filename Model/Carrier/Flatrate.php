@@ -1,47 +1,45 @@
 <?php
+
 namespace Arun\FreeShippingBar\Model\Carrier;
+
+use Magento\Checkout\Model\Session;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Flatrate
 {
 
     const XML_PATH_FREE_SHIPPING_SUBTOTAL = "free_shipping_bar/free_shipping_bar/minimum_order_amount";
 
-    /**
-     * @var \Magento\Checkout\Model\Session
-     */
-    protected $_checkoutSession;
 
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
+    protected $_checkoutSession;
+    protected $_storeManager;
     protected $_scopeConfig;
 
     public function __construct(
-        \Magento\Checkout\Model\Session $checkoutSession,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        Session $checkoutSession,
+        ScopeConfigInterface $scopeConfig,
+        StoreManagerInterface $storeManager
     ) {
         $this->_storeManager = $storeManager;
         $this->_checkoutSession = $checkoutSession;
         $this->_scopeConfig = $scopeConfig;
     }
 
+    // This function is used in-order to set to disable the Flat rate shipping method 
+    // when the Free shipping is Available
     public function afterCollectRates(\Magento\OfflineShipping\Model\Carrier\Flatrate $flatRate, $result)
     {
         $scopeId = $this->_storeManager->getStore()->getId();
-
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
 
-        // Get MOA value from system configuration.
+        // Get Minimum order amount value from system configuration of the custom module
         $freeShippingSubTotal = $this->_scopeConfig->getValue(self::XML_PATH_FREE_SHIPPING_SUBTOTAL, $storeScope, $scopeId);
-
-        // Get cart subtotal from checkout session.
         $baseSubTotal = $this->_checkoutSession->getQuote()->getBaseSubtotal();
 
-        // Validate subtoal should be empty or Zero.
-        if(!empty($baseSubTotal) && !empty($freeShippingSubTotal)) {
+        if (!empty($baseSubTotal) && !empty($freeShippingSubTotal)) {
 
-            if($baseSubTotal >= $freeShippingSubTotal) {
+            if ($baseSubTotal >= $freeShippingSubTotal) {
                 return false;
             }
         }

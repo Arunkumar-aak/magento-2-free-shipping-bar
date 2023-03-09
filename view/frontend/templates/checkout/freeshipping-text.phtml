@@ -1,3 +1,19 @@
+<?php
+
+/**
+ * @var $block \Arun\FreeShippingBar\Block\FreeShippingBar
+ * This phtml is responsible for the showing in the checkout summary
+ */
+
+$freeShippingText = '';
+
+$isEnabled = $block->isEnabled();
+
+if ($isEnabled) {
+    $freeShippingText = $block->getFreeShippingMessage();
+}
+?>
+
 <script type="text/javascript">
-    window.freeShippingText = '<?php echo $block->getFreeShippingMessage(); ?>';
+    window.freeShippingText = '<?php echo $freeShippingText; ?>';
 </script>

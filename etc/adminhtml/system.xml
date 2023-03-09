@@ -2,50 +2,73 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="own" translate="label" sortOrder="100">
+        <tab id="freeshipping" translate="label" sortOrder="100">
             <label>Free ShippingBar</label>
         </tab>
         <section id="free_shipping_bar" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Free ShippingBar Settings</label>
-            <tab>own</tab>
-            <resource>Own_FreeShippingBar::config_free_shipping_bar</resource>
+            <tab>freeshipping</tab>
+            <resource>Arun_FreeShippingBar::config</resource>
             <group id="free_shipping_bar" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Free Shipping Bar Settings</label>
-                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 
-                <field id="minimum_order_amount" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="minimum_order_amount" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1">
                     <label>Minimum Order Amount</label>
-                     <validate>validate-number validate-zero-or-greater</validate>
+                    <validate>required-entry validate-number validate-zero-or-greater</validate>
                     <comment>Set the minimum order amount for free shipping.</comment>
+                     <depends>
+                         <field id="enabled">1</field>
+                     </depends>
                 </field>
 
-                <field id="cart_is_empty_message" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="cart_is_empty_message" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Message to show when cart is Empty</label>
+                    <validate>required-entry</validate>
                     <comment>Enter the message to display when the cart total qualifies for free shipping. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                     <depends>
+                         <field id="enabled">1</field>
+                     </depends>
                 </field>
 
 
-                <field id="cart_value_less_than_minimum_message" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="cart_value_less_than_minimum_message" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Message to show when cart value is less than minimum order amount</label>
-                    <comment>Enter the message to display when the cart total qualifies for free shipping. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                    <validate>required-entry</validate>
+                    <comment>Enter the message to display remaining amount to achieve free shipping. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                     <depends>
+                         <field id="enabled">1</field>
+                     </depends>
                 </field>
 
-                 <field id="success_message" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <field id="success_message" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Message to show when free shipping is available</label>
-                    <comment>Enter the message to display when the cart total qualifies for free shipping. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                    <validate>required-entry</validate>
+                    <comment>Enter the message to display when free shipping available. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                     <depends>
+                         <field id="enabled">1</field>
+                     </depends>
                 </field>
 
-                <field id="background_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="background_color" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Background Color</label>
+                    <validate>required-entry</validate>
                     <comment>e.g. #ffffff or rgb(255, 255, 255).</comment>
+                     <depends>
+                         <field id="enabled">1</field>
+                     </depends>
                 </field>
 
-                <field id="text_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="text_color" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Text Color</label>
+                    <validate>required-entry</validate>
                     <comment>e.g. #ffffff or rgb(255, 255, 255).</comment>
+                     <depends>
+                         <field id="enabled">1</field>
+                     </depends>
                 </field>
 
             </group>
