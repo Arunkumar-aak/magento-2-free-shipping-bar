@@ -1,0 +1,5 @@
+<?php if ($block->isEnabled()): ?>
+    <div class="free_shipping_bar_area" style="background-color: <?= $block->getBackgroundColor(); ?>; color:  <?= $block->getTextColor(); ?>" >
+        <?php echo __($block->getFreeShippingMessage()); ?>
+    </div>
+<?php endif; ?>

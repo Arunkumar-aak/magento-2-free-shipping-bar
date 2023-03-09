@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="own" translate="label" sortOrder="100">
+            <label>Free ShippingBar</label>
+        </tab>
+        <section id="free_shipping_bar" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Free ShippingBar Settings</label>
+            <tab>own</tab>
+            <resource>Own_FreeShippingBar::config_free_shipping_bar</resource>
+            <group id="free_shipping_bar" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Free Shipping Bar Settings</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="minimum_order_amount" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Order Amount</label>
+                     <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>Set the minimum order amount for free shipping.</comment>
+                </field>
+
+                <field id="cart_is_empty_message" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message to show when cart is Empty</label>
+                    <comment>Enter the message to display when the cart total qualifies for free shipping. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                </field>
+
+
+                <field id="cart_value_less_than_minimum_message" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message to show when cart value is less than minimum order amount</label>
+                    <comment>Enter the message to display when the cart total qualifies for free shipping. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                </field>
+
+                 <field id="success_message" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message to show when free shipping is available</label>
+                    <comment>Enter the message to display when the cart total qualifies for free shipping. You can use the following variables in the message: {minimum_order_amount}, {cart_total}, and {remaining_amount}.</comment>
+                </field>
+
+                <field id="background_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <comment>e.g. #ffffff or rgb(255, 255, 255).</comment>
+                </field>
+
+                <field id="text_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Color</label>
+                    <comment>e.g. #ffffff or rgb(255, 255, 255).</comment>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

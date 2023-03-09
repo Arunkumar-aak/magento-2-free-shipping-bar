@@ -1,0 +1,16 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="opc-block-summary" data-bind="blockLoader: isLoading">
+  <span data-bind="i18n: 'Order Summary'" class="title"></span>
+  <!-- Free Shipping Text -->
+  <div class="free_shipping_bar_area">
+    <span data-bind="html: freeShippingText"></span>
+  </div>
+  <!-- ko foreach: elems() -->
+  <!-- ko template: getTemplate() --><!-- /ko -->
+  <!-- /ko -->
+</div>

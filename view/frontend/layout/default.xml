@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <head>
+      <css src="Arun_FreeShippingBar::css/custom-style.css"/>
+  </head>
+    <body>
+        <referenceContainer name="header.container">
+            <block class="Arun\FreeShippingBar\Block\FreeShippingBar" name="freeshippingbar" template="Arun_FreeShippingBar::freeshippingbar.phtml" after="-" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>
